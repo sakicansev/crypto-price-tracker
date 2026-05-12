@@ -1,10 +1,21 @@
-const coins = ["Bitcoin", "Ethereum", "USDC", "Solana", "Cardano", "Polkadot", "Avalanche", "Chainlink", "Polygon", "Algorand"];
-const prices = [94000, 1800, 1.00, 120, 0.50, 7.50, 25, 20, 1.20, 1.80];
+const coins =[ 
+    { name: "Bitcoin",   symbol: "BTC",  price: 94000 },
+    { name: "Ethereum",  symbol: "ETH",  price: 1800 },
+    { name: "Solana",    symbol: "SOL",  price: 120 },
+    { name: "USDC",      symbol: "USDC", price: 0.99 },
+    { name: "Cardano",   symbol: "ADA",  price: 0.27 },
+    { name: "Polkadot",  symbol: "DOT",  price: 1.35 },
+    { name: "Avalanche", symbol: "AVAX", price: 10.03 },
+    { name: "Chainlink", symbol: "LINK", price: 10.50 },
+    { name: "Polygon",   symbol: "POL",  price: 0.10 },
+    { name: "Algorand",  symbol: "ALGO", price: 0.12 }
+];
 
-function printPrice(coin, price) {
-    console.log(coin + ": $" + price.toFixed(2));
+function printCoin(coin) {
+        console.log(coin.name + " (" + coin.symbol +"): $" + coin.price.toFixed(2));
+
 }
 
 for (let i = 0; i < coins.length; i++) {
-    printPrice(coins[i], prices[i]);
+    printCoin(coins[i])
 }
