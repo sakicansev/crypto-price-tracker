@@ -1,14 +1,14 @@
     const coins =[ 
-    { name: "Bitcoin",   symbol: "BTC",  price: 94000 },
-    { name: "Ethereum",  symbol: "ETH",  price: 1800 },
-    { name: "Solana",    symbol: "SOL",  price: 120 },
-    { name: "USDC",      symbol: "USDC", price: 0.99 },
-    { name: "Cardano",   symbol: "ADA",  price: 0.27 },
-    { name: "Polkadot",  symbol: "DOT",  price: 1.35 },
-    { name: "Avalanche", symbol: "AVAX", price: 10.03 },
-    { name: "Chainlink", symbol: "LINK", price: 10.50 },
-    { name: "Polygon",   symbol: "POL",  price: 0.10 },
-    { name: "Algorand",  symbol: "ALGO", price: 0.12 }
+    { name: "Bitcoin",   symbol: "BTC",  price: 0, id: "bitcoin" },
+    { name: "Ethereum",  symbol: "ETH",  price: 0, id: "ethereum"},
+    { name: "Solana",    symbol: "SOL",  price: 0, id: "solana"},
+    { name: "USDC",      symbol: "USDC", price: 0, id: "usd-coin"},
+    { name: "Cardano",   symbol: "ADA",  price: 0, id: "cardano"},
+    { name: "Polkadot",  symbol: "DOT",  price: 0, id: "polkadot"},
+    { name: "Avalanche", symbol: "AVAX", price: 0, id: "avalanche-2"},
+    { name: "Chainlink", symbol: "LINK", price: 0, id: "chainlink"},
+    { name: "Polygon",   symbol: "POL",  price: 0, id: "polygon-ecosystem-token"},
+    { name: "Algorand",  symbol: "ALGO", price: 0, id: "algorand" }
 ];
 
 coins.sort((a,b) => b.price - a.price);
@@ -25,15 +25,14 @@ function printCoin(coin) {
             
         }
 
-for (let i = 0; i < coins.length; i++) {
-    printCoin(coins[i])
-}
-
 async function getLivePrices(){
-    const response = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd");
+    const response = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,cardano,polkadot,usd-coin,avalanche-2,chainlink,polygon-ecosystem-token,algorand&vs_currencies=usd");
     const data = await response.json();
-    console.log("Bitcoin: $" + data.bitcoin.usd);
-    console.log("Ethereum: $" + data.ethereum.usd);
+    for (let i=0; i < coins.length; i++){
+        coins[i].price = data[coins[i].id].usd;
+    printCoin(coins[i])
+    }
+
 
 }
 getLivePrices();
