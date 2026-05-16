@@ -25,8 +25,15 @@ function printCoin(coin) {
             
         }
 
-
-
 for (let i = 0; i < coins.length; i++) {
     printCoin(coins[i])
 }
+
+async function getLivePrices(){
+    const response = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd");
+    const data = await response.json();
+    console.log("Bitcoin: $" + data.bitcoin.usd);
+    console.log("Ethereum: $" + data.ethereum.usd);
+
+}
+getLivePrices();
