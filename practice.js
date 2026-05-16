@@ -1,4 +1,4 @@
-const coins =[ 
+    const coins =[ 
     { name: "Bitcoin",   symbol: "BTC",  price: 94000 },
     { name: "Ethereum",  symbol: "ETH",  price: 1800 },
     { name: "Solana",    symbol: "SOL",  price: 120 },
@@ -10,6 +10,8 @@ const coins =[
     { name: "Polygon",   symbol: "POL",  price: 0.10 },
     { name: "Algorand",  symbol: "ALGO", price: 0.12 }
 ];
+
+coins.sort((a,b) => b.price - a.price);
 
 function printCoin(coin) {
         console.log(coin.name + " (" + coin.symbol +"): $" + coin.price.toFixed(2));
