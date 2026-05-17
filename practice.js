@@ -11,8 +11,6 @@
     { name: "Algorand",  symbol: "ALGO", price: 0, change: 0, id: "algorand" }
 ];
 
-coins.sort((a,b) => b.price - a.price);
-
 function printCoin(coin) {
         console.log(coin.name + " (" + coin.symbol +"): $" + coin.price.toFixed(2));
         console.log("   24h: " + (coin.change >= 0 ? "+" : "") + coin.change.toFixed(2) + "%");
@@ -27,14 +25,18 @@ function printCoin(coin) {
         }
 
 async function getLivePrices(){
+
     const response = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,cardano,polkadot,usd-coin,avalanche-2,chainlink,polygon-ecosystem-token,algorand&vs_currencies=usd&include_24hr_change=true");
     const data = await response.json();
     for (let i=0; i < coins.length; i++){
         coins[i].price = data[coins[i].id].usd;
         coins[i].change = data[coins[i].id].usd_24h_change;   
     }
+    coins.sort((a,b) => b.price - a.price);
+//    coins.sort((a,b) => b.change - a.change);
     for (let i=0; i < coins.length; i++){
         printCoin(coins[i])
     }
 }
 getLivePrices();
+
