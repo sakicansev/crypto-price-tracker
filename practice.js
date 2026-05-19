@@ -37,6 +37,21 @@ async function getLivePrices(){
     for (let i=0; i < coins.length; i++){
         printCoin(coins[i])
     }
+    let topGainer = coins[0];
+    let topLoser = coins[0];
+
+    for (let i = 1; i < coins.length; i++){
+        if (coins[i].change > topGainer.change){
+            topGainer = coins[i];
+        }
+        if (coins[i].change < topLoser.change) {
+            topLoser = coins[i];
+        }
+    }
+    console.log("--- SUMMARY ---");
+    console.log("Top Gainer: " + topGainer.name + " (" + topGainer.symbol + ") " + (topGainer.change >= 0 ? "+" : "") + topGainer.change.toFixed(2) + "%");
+    console.log("Top Loser: " + topLoser.name + " (" + topLoser.symbol + ") " + (topLoser.change >= 0 ? "+" : "") + topLoser.change.toFixed(2) + "%");
+
 }
 getLivePrices();
 
