@@ -39,6 +39,7 @@ async function getLivePrices(){
     }
     let topGainer = coins[0];
     let topLoser = coins[0];
+    let total = coins.reduce((sum, coin) => sum + coin.price, 0);
 
     for (let i = 1; i < coins.length; i++){
         if (coins[i].change > topGainer.change){
@@ -51,6 +52,7 @@ async function getLivePrices(){
     console.log("--- SUMMARY ---");
     console.log("Top Gainer: " + topGainer.name + " (" + topGainer.symbol + ") " + (topGainer.change >= 0 ? "+" : "") + topGainer.change.toFixed(2) + "%");
     console.log("Top Loser: " + topLoser.name + " (" + topLoser.symbol + ") " + (topLoser.change >= 0 ? "+" : "") + topLoser.change.toFixed(2) + "%");
+    console.log("Total Portfolio Value: $" + total.toFixed(2));
 
 }
 getLivePrices();
