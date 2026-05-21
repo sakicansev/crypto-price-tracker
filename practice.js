@@ -25,9 +25,9 @@ function printCoin(coin) {
         }
 
 async function getLivePrices(){
-
-    const response = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,cardano,polkadot,usd-coin,avalanche-2,chainlink,polygon-ecosystem-token,algorand&vs_currencies=usd&include_24hr_change=true");
-    const data = await response.json();
+    try {
+        const response = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,cardano,polkadot,usd-coin,avalanche-2,chainlink,polygon-ecosystem-token,algorand&vs_currencies=usd&include_24hr_change=true");
+        const data = await response.json();
     for (let i=0; i < coins.length; i++){
         coins[i].price = data[coins[i].id].usd;
         coins[i].change = data[coins[i].id].usd_24h_change;   
@@ -53,7 +53,10 @@ async function getLivePrices(){
     console.log("Top Gainer: " + topGainer.name + " (" + topGainer.symbol + ") " + (topGainer.change >= 0 ? "+" : "") + topGainer.change.toFixed(2) + "%");
     console.log("Top Loser: " + topLoser.name + " (" + topLoser.symbol + ") " + (topLoser.change >= 0 ? "+" : "") + topLoser.change.toFixed(2) + "%");
     console.log("Total Portfolio Value: $" + total.toFixed(2));
-
+    console.log("--- Data loaded Successfully ---");
+    } catch (error) {
+        console.error("Something went wrong: ", error.message);
+    }
 }
 getLivePrices();
 
