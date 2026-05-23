@@ -36,9 +36,20 @@ async function getLivePrices(){
     }
     coins.sort((a,b) => b.price - a.price);
 //    coins.sort((a,b) => b.change - a.change);
-    for (let i=0; i < coins.length; i++){
-        printCoin(coins[i])
+    displayCoins()
+    displaySummary()
+    } catch (error) {
+        console.error("Something went wrong: ", error.message);
     }
+}
+
+function displayCoins() {
+    for (let i=0; i < coins.length; i++){
+    printCoin(coins[i])
+    }
+}
+
+function displaySummary() {
     let topGainer = coins[0];
     let topLoser = coins[0];
     let total = coins.reduce((sum, coin) => sum + coin.price, 0);
@@ -56,9 +67,7 @@ async function getLivePrices(){
     console.log("Top Loser: " + topLoser.name + " (" + topLoser.symbol + ") " + (topLoser.change >= 0 ? "+" : "") + topLoser.change.toFixed(2) + "%");
     console.log("Total Portfolio Value: $" + total.toFixed(2));
     console.log("--- Data loaded Successfully ---");
-    } catch (error) {
-        console.error("Something went wrong: ", error.message);
-    }
 }
+
 getLivePrices();
 
