@@ -1,16 +1,44 @@
-# Crypto Price Tracker
+# Crypto Price Tracker and Analysis
 
-welcome! This is my beginning practicing Node.js project. I am learning JavaScript fundamentals while building a crypto market analysis app.
+I would like to improve myself in JavaScript and Crypto & Blockchain analysis. For this purpose, I created this self-learning Node.js project, building a crypto market analysis app while practicing JavaScript fundamentals.
+
+---
 
 ## What it does
-it now only prints a formatted list of cryptocurrencies with their price. however, of course, it is not it. i want to develop it so much more.
 
-## Concepts practiced 
-- Variables (const, let) -yet-
-- Functions
-- Arrays
-- Loops
-- Number formatting with toFixed()
+It satisfies a lot of curiosity to provoke you into finding your own methods of investment. Because numbers are the most important and interesting indicators, motivators and protectors — to minimize the risk and calculate the win.
+
+- Fetches real-time prices for 10 cryptocurrencies from the CoinGecko API
+- Displays 24h price change for each coin with + / - indicators
+- Shows a summary with top gainer, top loser, and total portfolio value
+- Handles errors gracefully with try/catch
+- Timestamps each data fetch
+
+---
+
+## What am I practicing?
+
+Now let's talk some grown up things. I practice:
+
+- Variables, Functions, Arrays, Loops
+- Objects and number formatting with `toFixed()`
+- `.sort()` and `.reduce()`
+- `fetch`, `async/await`, JSON
+- Ternary operator
+- `try/catch` error handling
+- API integration
+- Refactoring and separation of functions
+
+---
 
 ## How to run
-node practice.js (i will learn better)
+
+Terminal must be used and Node.js must be installed.
+
+```
+node practice.js
+```
+
+---
+
+*This project is a work in progress — more features coming.*
