@@ -1,3 +1,4 @@
+    const fs = require('fs');
     const coins =[ 
     { name: "Bitcoin",   symbol: "BTC",  price: 0, change: 0, id: "bitcoin",},
     { name: "Ethereum",  symbol: "ETH",  price: 0, change: 0, id: "ethereum"},
@@ -68,6 +69,11 @@ function displaySummary() {
     console.log("Top Loser: " + topLoser.name + " (" + topLoser.symbol + ") " + (topLoser.change >= 0 ? "+" : "") + topLoser.change.toFixed(2) + "%");
     console.log("Total Portfolio Value: $" + total.toFixed(2));
     console.log("--- Data loaded Successfully ---");
+    const snapshot = {
+        timestamp: new Date().toISOString(),
+        coins: coins
+    };
+    fs.appendFileSync('prices.json', JSON.stringify(snapshot) + '\n');
 }
 
 getLivePrices();
