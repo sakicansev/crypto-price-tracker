@@ -26,6 +26,7 @@ function printCoin(coin) {
 
 async function getLivePrices(){
     try {
+        console.log("\n==========================================");
         const now =  new Date();
         console.log("Fetching prices at: " + now.toLocaleDateString() + " " + now.toLocaleTimeString());
         const response = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,cardano,polkadot,usd-coin,avalanche-2,chainlink,polygon-ecosystem-token,algorand&vs_currencies=usd&include_24hr_change=true");
@@ -70,4 +71,4 @@ function displaySummary() {
 }
 
 getLivePrices();
-
+setInterval(getLivePrices, 30000);
