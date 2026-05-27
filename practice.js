@@ -16,17 +16,10 @@ const fs = require('fs');
 ];
 
 function printCoin(coin) {
-        console.log(coin.name + " (" + coin.symbol +"): $" + coin.price.toFixed(2));
-        console.log("   24h: " + (coin.change >= 0 ? "+" : "") + coin.change.toFixed(2) + "%");
-        if (coin.price < 1) {
-            console.log("  ⚠ under $1");
-        } else if (coin.price > 10000) {
-            console.log( "  * major coin");
-        } else {
-            console.log("  . mid range");
-            }
-            
-        }
+    const price = ("$" + coin.price.toFixed(2)).padStart(12);
+    const change = (coin.change >= 0 ? "+" : "") + coin.change.toFixed(2) + "%"
+    console.log(coin.name.padEnd(14) + (coin.change >= 0 ? "▲" : "▼") + price + "   " + change);
+}
 
 async function getLivePrices(){
     try {
