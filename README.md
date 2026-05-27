@@ -1,43 +1,65 @@
 # Crypto Price Tracker and Analysis
 
-I would like to improve myself in JavaScript and Crypto & Blockchain analysis. For this purpose, I created this self-learning Node.js project, building a crypto market analysis app while practicing JavaScript fundamentals.
+I want to improve myself in JavaScript and Crypto & Blockchain analysis. 
+So I built this — a self-learning Node.js project where I practice 
+JavaScript fundamentals while building something I actually care about: 
+a real crypto market analysis app.
 
 ---
 
 ## What it does
 
-It satisfies a lot of curiosity to provoke you into finding your own methods of investment. Because numbers are the most important and interesting indicators, motivators and protectors — to minimize the risk and calculate the win.
+Numbers are the most important indicators in crypto. They motivate, 
+protect, and minimize risk. This app puts the numbers in front of you.
 
 - Fetches real-time prices for 10 cryptocurrencies from the CoinGecko API
-- Displays 24h price change for each coin with + / - indicators
-- Shows a summary with top gainer, top loser, and total portfolio value
-- Handles errors gracefully with try/catch
-- Timestamps each data fetch
+- Displays 24h price change for each coin with ▲ ▼ indicators
+- Shows top gainer, top loser, and total portfolio value
+- Saves every snapshot to a SQLite database — not a flat file, a real DB
+- Analyzes session data: min, max, avg price per coin, biggest mover, 
+  most volatile coin, and session duration
 
 ---
 
-## What am I practicing?
+## What I practiced
 
-Now let's talk some grown up things. I practice:
+Now let's talk grown up things:
 
 - Variables, Functions, Arrays, Loops
-- Objects and number formatting with `toFixed()`
-- `.sort()` and `.reduce()`
+- Objects and `.sort()`, `.reduce()`, `.map()`, `.find()`
 - `fetch`, `async/await`, JSON
-- Ternary operator
 - `try/catch` error handling
-- API integration
-- Refactoring and separation of functions
+- File I/O with `fs`
+- SQLite database with `better-sqlite3`
+- SQL queries inside JavaScript
+- API integration with rate limit handling
+- Refactoring and separation of concerns
 
 ---
 
 ## How to run
 
-Terminal must be used and Node.js must be installed.
+Terminal and Node.js required.
 
-```
+**Live tracker:**
 node practice.js
-```
+
+**Session analysis:**
+node analyze.js
+
+---
+
+## Sample output
+
+Snapshots: 1131
+Duration: 563 mins
+Bitcoin:   $75752 → $74668   -1.43%
+Ethereum:  $2081  → $2045    -1.76%
+Algorand:  $0.108 → $0.106   -2.21%
+--- SESSION SUMMARY ---
+Top Gainer:    USDC
+Top Loser:     Algorand  -2.21%
+Most Volatile: Bitcoin
 
 ---
 
