@@ -1,3 +1,10 @@
+
+
+
+const notifier = require('node-notifier');
+
+
+
 const { saveSnapshot } = require('./db');
 
 
@@ -69,6 +76,15 @@ function displaySummary() {
     console.log("Top Loser: " + topLoser.name + " (" + topLoser.symbol + ") " + (topLoser.change >= 0 ? "+" : "") + topLoser.change.toFixed(2) + "%");
     console.log("Total Portfolio Value: $" + total.toFixed(2));
     console.log("--- Data loaded Successfully ---");
+    for (let i = 0; i < coins.length; i++) {
+        if (Math.abs(coins[i].change) > 3) {
+            notifier.notify({
+                title: '🚨 Crypto Alert',
+                message: coins[i].name + ' moved ' + coins[i].change.toFixed(2) + '% in 24h',
+                sound: true
+            });
+        }
+    }
     const snapshot = {
         timestamp: new Date().toISOString(),
         coins: coins
