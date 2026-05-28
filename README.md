@@ -62,5 +62,10 @@ Top Loser:     Algorand  -2.21%
 Most Volatile: Bitcoin
 
 ---
+## Dashboard
+
+![Crypto Price Tracker Dashboard](dashboard.png)
+
+Run `node server.js` and open `http://localhost:3000` to see live data.
 
 *This project is a work in progress — more features coming.*

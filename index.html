@@ -28,6 +28,8 @@
 </head>
 <body>
     <h1>Crypto Price Tracker</h1>
+    <p id="lastUpdated" style="color: #888;">Loading...</p>
+
     <table id="coinTable">
         <tr>
             <th>Coin</th>
@@ -37,19 +39,30 @@
     </table>
 
     <script>
+    function loadPrices() {
         fetch('/api/coins')
             .then(res => res.json())
             .then(coins => {
                 const table = document.getElementById('coinTable');
+                // clear old rows except header
+                while (table.rows.length > 1) {
+                    table.deleteRow(1);
+                }
                 for (let i = 0; i < coins.length; i++) {
                     const row = table.insertRow();
                     const arrow = coins[i].change_24h >= 0 ? '▲' : '▼';
-                    const change = (coins[i].change_24h >= 0 ? '+': '') + coins[i].change_24h.toFixed(2) + '%';
+                    const change = (coins[i].change_24h >= 0 ? '+' : '') + coins[i].change_24h.toFixed(2) + '%';
+                    const color = coins[i].change_24h >= 0 ? '#00ff88' : '#ff4444';
                     row.innerHTML = '<td>' + coins[i].name + '</td>' +
                                     '<td>$' + coins[i].price_usd.toFixed(2) + '</td>' +
-                                    '<td>' + arrow + ' ' + change + '</td>';
+                                    '<td style="color:' + color + '">' + arrow + ' ' + change + '</td>';
                 }
+                document.getElementById('lastUpdated').innerText = 'Last updated: ' + new Date().toLocaleString();
             });
+    }
+
+    loadPrices();
+    setInterval(loadPrices, 30000);
     </script>
 </body>
 </html>
