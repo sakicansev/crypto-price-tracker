@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #1a1a2e;
+            color: #eee;
+            padding: 30px;
+        }
+        h1 {
+            color: #00d4ff;
+        }
+        table {
+            border-collapse: collapse;
+            width: 400px;
+        }
+        th {
+            backgroun: #16213e;
+            padding: 10px;
+            border-bottom: 1px solid #333;
+        }
+        tr:hover {
+            background: #16213e;
+        }
+    </style>
+    <title>Crypto Price Tracker</title>
+</head>
+<body>
+    <h1>Crypto Price Tracker</h1>
+    <table id="coinTable">
+        <tr>
+            <th>Coin</th>
+            <th>Price</th>
+            <th>24h Change</th>
+        </tr>
+    </table>
+
+    <script>
+        fetch('/api/coins')
+            .then(res => res.json())
+            .then(coins => {
+                const table = document.getElementById('coinTable');
+                for (let i = 0; i < coins.length; i++) {
+                    const row = table.insertRow();
+                    const arrow = coins[i].change_24h >= 0 ? '▲' : '▼';
+                    const change = (coins[i].change_24h >= 0 ? '+': '') + coins[i].change_24h.toFixed(2) + '%';
+                    row.innerHTML = '<td>' + coins[i].name + '</td>' +
+                                    '<td>$' + coins[i].price_usd.toFixed(2) + '</td>' +
+                                    '<td>' + arrow + ' ' + change + '</td>';
+                }
+            });
+    </script>
+</body>
+</html>
