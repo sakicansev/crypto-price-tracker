@@ -68,5 +68,3 @@ Run `node server.js` and open `http://localhost:3000` to see the live dashboard.
 Click any coin to see its full price history chart.
 
 ![Crypto Price Tracker Dashboard](dashboard.png)
-
-*This project is a work in progress — more features coming.*
