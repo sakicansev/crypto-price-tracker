@@ -11,13 +11,24 @@ const db = new Database('prices.db')
 
 app.get('/api/coins', (req,res) => {
     const coins = db.prepare(`
-        SELECT p.name, p.symbol, p.price_usd, p.change_24h
+        SELECT p.name, p.symbol, p.coin_id, p.price_usd, p.change_24h
         FROM prices p
         JOIN snapshots s ON s.id = snapshot_id
         WHERE s.id = (SELECT MAX(id) FROM snapshots)
     `).all();
 
     res.json(coins);
+})
+
+app.get('/api/history/:coinId', (req, res) => {
+    const rows = db.prepare(`
+        SELECT s.timestamp, p.price_usd
+        FROM prices p
+        JOIN snapshots s ON s.id = p.snapshot_id
+        WHERE p.coin_id = ?
+        ORDER BY s.timestamp ASC
+    `).all(req.params.coinId);
+    res.json(rows);
 })
 
 app.listen(3000, () => {
