@@ -64,8 +64,9 @@ Most Volatile: Bitcoin
 ---
 ## Dashboard
 
-![Crypto Price Tracker Dashboard](dashboard.png)
+Run `node server.js` and open `http://localhost:3000` to see the live dashboard.
+Click any coin to see its full price history chart.
 
-Run `node server.js` and open `http://localhost:3000` to see live data.
+![Crypto Price Tracker Dashboard](dashboard.png)
 
 *This project is a work in progress — more features coming.*
