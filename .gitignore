@@ -1,1 +1,4 @@
 .DS_Store
+prices.db
+prices.json
+node_modules/
